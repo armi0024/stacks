@@ -15,6 +15,7 @@ dependencies = [
 
 [project.scripts]
 stacks-analyze = "stacks.analyzer.cli:main"
+stacks-admin = "stacks.app.cli:main"
 
 [dependency-groups]
 dev = [

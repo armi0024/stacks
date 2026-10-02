@@ -91,8 +91,16 @@ def _sha256(path: str) -> str:
 
 
 def resolve_language(
-    pdf: PdfDocument, indices: list[int], override: str | None, s: AnalyzerSettings
+    pdf: PdfDocument,
+    indices: list[int],
+    override: str | None,
+    s: AnalyzerSettings,
+    identity_language: str | None = None,
 ) -> LanguageInfo:
+    """Priority (disposition 2): operator override > confident detection >
+    identity-language field > eng fallback (Latin script only) > unknown.
+    OSD votes across several probe pages so a cover page cannot misname the
+    document's language on its own."""
     installed = ocr.installed_languages()
 
     def support(lang: str, origin: str) -> LanguageInfo:
@@ -113,58 +121,74 @@ def resolve_language(
     if override:
         return support(override, "operator override")
 
-    probe = indices[: s.language_detect_pages]
+    # probe pool: spread beyond the first pages so a cover cannot dominate
+    pool = indices[: max(s.language_detect_pages * 3, 8)]
     text_parts: list[str] = []
     image_pages: list[int] = []
-    for idx in probe:
+    for idx in pool:
         pd = pdf.load_page(idx)
         if pd.words:
             text_parts.append(pd.text)
         elif pd.images:
             image_pages.append(idx)
+    if len(image_pages) > s.language_detect_pages:
+        step = (len(image_pages) - 1) / (s.language_detect_pages - 1)
+        image_pages = [image_pages[round(i * step)] for i in range(s.language_detect_pages)]
 
-    detected: str | None = None
-    origin = "detected on first pages"
+    ambiguous_latin = False
     if text_parts:
         joined = " ".join(text_parts)
         detected = ocr.detect_language_from_text(joined)
         if detected == "eng" and not ocr.detect_latin_language(joined)[1]:
-            origin = "Latin script, ambiguous wordlist vote: eng fallback"
-    if detected is None and image_pages and ocr.tesseract_available():
+            ambiguous_latin = True
+        elif detected is not None:
+            return support(detected, "detected on first pages")
+
+    if not ambiguous_latin and image_pages and ocr.tesseract_available():
         renders = []
         for idx in image_pages:
             gray, _dpi, err = pdf.render_gray(idx, 200.0, s.render_mp_cap)
             if gray is not None and err is None:
                 renders.append(gray)
-        script = ocr.detect_script(renders[0]) if renders else None
+        # PRIMARY probe (dispositions 2+3): OCR probe pages under eng and
+        # vote real words — OSD misnames scripts on stylized or typewriter
+        # scans (observed: English pages voted Cyrillic), so a confident
+        # wordlist vote outranks it. Near-textless covers vote ambiguous,
+        # so probing continues across pages.
+        if "eng" in installed:
+            for gray in renders:
+                try:
+                    words = ocr.ocr_tsv(gray, "eng")
+                except (RuntimeError, OSError):
+                    continue
+                lang, confident = ocr.detect_latin_language(
+                    " ".join(w.text for w in words)
+                )
+                if confident:
+                    return support(lang, "wordlist vote on OCR probe pages")
+        # FALLBACK: OSD script majority across the probes, for scripts the
+        # eng probe cannot read (CJK, Cyrillic, ...). One cover page cannot
+        # misname the document alone.
+        scripts = [sc for sc in (ocr.detect_script(g) for g in renders) if sc]
+        script = max(set(scripts), key=scripts.count) if scripts else None
         if script == "Latin":
-            # Latin script alone doesn't name a language: OCR probe pages
-            # under eng and vote on the words (disposition 3). Near-textless
-            # pages (covers) vote ambiguous, so keep probing.
-            detected, origin = "eng", "Latin script, ambiguous wordlist vote: eng fallback"
-            if "eng" in ocr.installed_languages():
-                for gray in renders:
-                    try:
-                        words = ocr.ocr_tsv(gray, "eng")
-                    except (RuntimeError, OSError):
-                        continue
-                    lang, confident = ocr.detect_latin_language(
-                        " ".join(w.text for w in words)
-                    )
-                    if confident:
-                        detected = lang
-                        origin = "Latin script, wordlist vote on OCR probe"
-                        break
+            ambiguous_latin = True
         elif script:
-            detected = ocr.script_to_language(script)
-            origin = f"OSD script '{script}' on first image page"
-    if detected is None:
-        return LanguageInfo(
-            None, None, False,
-            "document language could not be determined from first pages: "
-            "TQ is null (unknown), never penalized",
-        )
-    return support(detected, origin)
+            mapped = ocr.script_to_language(script)
+            if mapped:
+                return support(
+                    mapped, f"OSD script '{script}' voted across {len(scripts)} probe page(s)"
+                )
+
+    if identity_language:
+        return support(identity_language, "identity language field default")
+    if ambiguous_latin:
+        return support("eng", "Latin script, ambiguous wordlist vote: eng fallback")
+    return LanguageInfo(
+        None, None, False,
+        "document language could not be determined from first pages: "
+        "TQ is null (unknown), never penalized",
+    )
 
 
 def _embedded_source(pd) -> str:
@@ -273,6 +297,7 @@ def analyze_pdf(
     settings: AnalyzerSettings | None = None,
     mode: str = "assess",
     lang_override: str | None = None,
+    identity_language: str | None = None,
     measure_achievable: bool = False,
     critical_pages: set[int] | None = None,
     schematic_implied_flag: bool = False,
@@ -286,7 +311,7 @@ def analyze_pdf(
             indices = sampling.screening_sample(n, s.screening_max_pages)
         else:
             indices = list(range(n))
-        lang = resolve_language(pdf, indices, lang_override, s)
+        lang = resolve_language(pdf, indices, lang_override, s, identity_language)
         pages = [
             analyze_page(pdf, i, lang, s, measure_achievable, schematic_implied_flag)
             for i in indices

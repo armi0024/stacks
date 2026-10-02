@@ -83,6 +83,42 @@ class TestLatinVote:
         assert info.used == "fra" and info.supported
         assert "wordlist vote" in info.reason
 
+    def test_cover_page_cannot_misname_document(self, tmp_path):
+        """Disposition 2: OSD votes across probe pages; a graphics-only
+        cover no longer decides the document language alone."""
+        doc = pymupdf.open()
+        fb.add_image_page(doc, fb.make_schematic_image(dpi=200.0, labels=False), dpi=200.0)
+        text_img = fb.make_text_image(dpi=200.0)
+        for _ in range(3):
+            fb.add_image_page(doc, text_img, dpi=200.0)
+        path = str(tmp_path / "covered.pdf")
+        doc.save(path)
+        doc.close()
+        with PdfDocument(path) as pdf:
+            info = resolve_language(pdf, list(range(4)), None, AnalyzerSettings())
+        assert info.used == "eng"
+
+    def test_identity_language_default_when_detection_fails(self, tmp_path):
+        # a graphics-only document: no text, no readable script
+        doc = pymupdf.open()
+        fb.add_image_page(doc, fb.make_schematic_image(dpi=150.0, labels=False), dpi=150.0)
+        path = str(tmp_path / "schem_only.pdf")
+        doc.save(path)
+        doc.close()
+        with PdfDocument(path) as pdf:
+            no_identity = resolve_language(pdf, [0], None, AnalyzerSettings())
+            with_identity = resolve_language(
+                pdf, [0], None, AnalyzerSettings(), identity_language="jpn"
+            )
+        if no_identity.detected is None:  # OSD found nothing, as expected
+            assert with_identity.used == "jpn"
+            assert "identity language" in with_identity.reason
+
+    def test_operator_override_beats_identity(self, fixtures):
+        with PdfDocument(fixtures.get("blank_and_text")) as pdf:
+            info = resolve_language(pdf, [0, 1], "jpn", AnalyzerSettings(), identity_language="eng")
+        assert info.used == "jpn" and "override" in info.reason
+
     def test_language_used_recorded_in_report(self, fixtures):
         from stacks.analyzer.report import to_dict
 

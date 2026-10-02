@@ -29,6 +29,11 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
         help="operator language override (e.g. eng, jpn); default: detect on first pages",
     )
+    p.add_argument(
+        "--identity-lang",
+        default=None,
+        help="identity-field language used as default when detection is not confident",
+    )
     p.add_argument("--json", dest="json_out", default=None, help="write the full JSON report here")
     p.add_argument(
         "--measure-achievable",
@@ -74,6 +79,7 @@ def main(argv: list[str] | None = None) -> int:
             settings=settings,
             mode=args.mode,
             lang_override=args.lang,
+            identity_language=args.identity_lang,
             measure_achievable=args.measure_achievable,
             critical_pages=critical,
             schematic_implied_flag=args.schematic_implied,

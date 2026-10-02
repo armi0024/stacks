@@ -170,8 +170,10 @@ def _analyze_and_record(
 ) -> None:
     from stacks.analyzer.report import to_dict
 
+    # the catalog's language field is the IDENTITY default, not an override:
+    # confident detection may still disagree with it (disposition 2)
     result = analyze_pdf(
-        str(pdf_path), settings=settings, mode=mode, lang_override=language,
+        str(pdf_path), settings=settings, mode=mode, identity_language=language,
     )
     report = to_dict(result)
     sc = result.scores

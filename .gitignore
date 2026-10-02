@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.pyc
+smoke/
+.pytest_cache/
+tests/_fixture_cache/

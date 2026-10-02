@@ -1,0 +1,723 @@
+{
+  "report_schema_version": "1",
+  "tool": {
+    "name": "stacks-analyze",
+    "code_version": "0.1.0",
+    "pymupdf_version": "1.28.2"
+  },
+  "analysis_config_hash": "2d1607d2e7efe31d4d4d79fcb5c09869888124970c8bfe267c92a1247e531ec8",
+  "file": {
+    "path": "smoke/1945-i-ii-the-arcade-game-manual-french/1945 I & II - The Arcade Game manual (french).pdf",
+    "sha256": "2fb03d3ce1801a128aeeeb8980d65f043d65905b581e17fb313c5008abf71531",
+    "page_count": 8
+  },
+  "coverage": {
+    "mode": "assess",
+    "sampled_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "assessed_pages": 8,
+    "unassessed_pages": 0
+  },
+  "language": {
+    "detected": "eng",
+    "used": "eng",
+    "supported": true,
+    "reason": "language 'eng' (detected on first pages)"
+  },
+  "structural": {
+    "filters_seen": [
+      "DCTDecode"
+    ],
+    "jbig2_image_count": 0,
+    "risk_flags": [],
+    "reasons": []
+  },
+  "document_scores": {
+    "if_text": 94.7,
+    "tq_text": 89.0,
+    "if_schem": 92.0,
+    "tq_schem": 89.6,
+    "image_adequate": true,
+    "text_adequate": true,
+    "adequacy_basis": "primary measurements only (never blended fitness)",
+    "fitness_text_ranking_only": 91.9,
+    "fitness_schematic_ranking_only": 91.3,
+    "grades": {
+      "if_text": "A",
+      "tq_text": "A",
+      "if_schem": "A",
+      "tq_schem": "A"
+    },
+    "text_page_count": 3,
+    "schematic_page_count": 5
+  },
+  "page_gates": {
+    "basis": "as_shipped",
+    "required_pages": [
+      1,
+      2,
+      5,
+      6,
+      7
+    ],
+    "blocking": [],
+    "degraded": [],
+    "pages_below_adequacy": {
+      "image": 0,
+      "text": 0
+    }
+  },
+  "completeness": {
+    "status": "unknown",
+    "missing_fraction": 0.0,
+    "reasons": [
+      "single representation (N=1): completeness unknown, missing_fraction 0, no penalty, expected-length floor inapplicable (SPEC P4)"
+    ]
+  },
+  "schematic_implied": true,
+  "recommended_action": {
+    "action": "USABLE",
+    "labels": [
+      "unverified"
+    ],
+    "provisional": false,
+    "reasons": [
+      "image and text are adequate and page gates pass",
+      "completeness is unknown: labeled \"unverified\", not penalized"
+    ]
+  },
+  "pages": [
+    {
+      "page_index": 0,
+      "page_number": 1,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "schematic",
+      "image_fidelity": {
+        "effective_dpi": 362.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 1828.8,
+        "rms_contrast": 53.2,
+        "speckle_index": 408.33,
+        "skew_deg": 0.0,
+        "render_dpi": 300.0
+      },
+      "if_score": 92.0,
+      "if_deductions": [
+        {
+          "code": "speckle",
+          "points": 8.0,
+          "reason": "background speckle 408.3 exceeds 6 (noisy background per 100k pixels)"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 0,
+        "mean_conf": null,
+        "low_conf_fraction": null,
+        "small_text_conf": null,
+        "small_text_count": 0,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": true,
+        "null_reason": "fewer than 5 words recognized: too little text to measure",
+        "notes": []
+      },
+      "tq_as_shipped_score": null,
+      "tq_deductions": [],
+      "tq_achievable_score": null,
+      "tq_effective_score": null,
+      "tq_null": true,
+      "table_regions": [
+        [
+          1816,
+          330,
+          445,
+          259
+        ],
+        [
+          1796,
+          609,
+          461,
+          299
+        ],
+        [
+          49,
+          665,
+          1784,
+          1294
+        ],
+        [
+          1813,
+          916,
+          443,
+          254
+        ],
+        [
+          259,
+          2345,
+          471,
+          276
+        ],
+        [
+          616,
+          2419,
+          718,
+          599
+        ],
+        [
+          1241,
+          2490,
+          546,
+          475
+        ],
+        [
+          15,
+          2651,
+          731,
+          696
+        ],
+        [
+          1470,
+          2889,
+          313,
+          406
+        ],
+        [
+          492,
+          3095,
+          330,
+          411
+        ],
+        [
+          771,
+          3119,
+          717,
+          283
+        ],
+        [
+          1310,
+          3304,
+          310,
+          202
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 1,
+      "page_number": 2,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "schematic",
+      "image_fidelity": {
+        "effective_dpi": 363.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 1898.6,
+        "rms_contrast": 50.2,
+        "speckle_index": 20.3,
+        "skew_deg": 0.0,
+        "render_dpi": 300.0
+      },
+      "if_score": 92.0,
+      "if_deductions": [
+        {
+          "code": "speckle",
+          "points": 8.0,
+          "reason": "background speckle 20.3 exceeds 6 (noisy background per 100k pixels)"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 682,
+        "mean_conf": 89.0,
+        "low_conf_fraction": 0.056,
+        "small_text_conf": 68.9,
+        "small_text_count": 19,
+        "refdes_conf": 87.5,
+        "refdes_count": 1,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": false,
+        "null_reason": null,
+        "notes": []
+      },
+      "tq_as_shipped_score": 90.0,
+      "tq_deductions": [
+        {
+          "code": "small_text",
+          "points": 10.0,
+          "reason": "small text (bbox <= 18 px, 19 words) averages confidence 69, below 70"
+        }
+      ],
+      "tq_achievable_score": null,
+      "tq_effective_score": 90.0,
+      "tq_null": false,
+      "table_regions": [
+        [
+          115,
+          244,
+          2036,
+          608
+        ],
+        [
+          111,
+          862,
+          2034,
+          443
+        ],
+        [
+          106,
+          1318,
+          1185,
+          662
+        ],
+        [
+          1331,
+          1320,
+          810,
+          661
+        ],
+        [
+          103,
+          1991,
+          2034,
+          562
+        ],
+        [
+          101,
+          2569,
+          509,
+          458
+        ],
+        [
+          1629,
+          2571,
+          505,
+          457
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 2,
+      "page_number": 3,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "text",
+      "image_fidelity": {
+        "effective_dpi": 363.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 1471.7,
+        "rms_contrast": 49.9,
+        "speckle_index": 40.93,
+        "skew_deg": 0.0,
+        "render_dpi": 300.0
+      },
+      "if_score": 92.0,
+      "if_deductions": [
+        {
+          "code": "speckle",
+          "points": 8.0,
+          "reason": "background speckle 40.9 exceeds 6 (noisy background per 100k pixels)"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 286,
+        "mean_conf": 78.0,
+        "low_conf_fraction": 0.199,
+        "small_text_conf": 23.5,
+        "small_text_count": 28,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": false,
+        "null_reason": null,
+        "notes": []
+      },
+      "tq_as_shipped_score": 87.1,
+      "tq_deductions": [
+        {
+          "code": "low_mean_confidence",
+          "points": 0.7,
+          "reason": "mean OCR confidence 78 is below 80"
+        },
+        {
+          "code": "low_confidence_fraction",
+          "points": 2.1,
+          "reason": "20% of words fall below confidence 60 (threshold 15%)"
+        },
+        {
+          "code": "small_text",
+          "points": 10.0,
+          "reason": "small text (bbox <= 18 px, 28 words) averages confidence 23, below 70"
+        }
+      ],
+      "tq_achievable_score": null,
+      "tq_effective_score": 87.1,
+      "tq_null": false,
+      "table_regions": [],
+      "errors": []
+    },
+    {
+      "page_index": 3,
+      "page_number": 4,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "text",
+      "image_fidelity": {
+        "effective_dpi": 363.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 2154.7,
+        "rms_contrast": 52.8,
+        "speckle_index": 87.79,
+        "skew_deg": 0.0,
+        "render_dpi": 300.0
+      },
+      "if_score": 92.0,
+      "if_deductions": [
+        {
+          "code": "speckle",
+          "points": 8.0,
+          "reason": "background speckle 87.8 exceeds 6 (noisy background per 100k pixels)"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 318,
+        "mean_conf": 89.2,
+        "low_conf_fraction": 0.063,
+        "small_text_conf": 24.6,
+        "small_text_count": 5,
+        "refdes_conf": 78.0,
+        "refdes_count": 4,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": false,
+        "null_reason": null,
+        "notes": []
+      },
+      "tq_as_shipped_score": 90.0,
+      "tq_deductions": [
+        {
+          "code": "small_text",
+          "points": 10.0,
+          "reason": "small text (bbox <= 18 px, 5 words) averages confidence 25, below 70"
+        }
+      ],
+      "tq_achievable_score": null,
+      "tq_effective_score": 90.0,
+      "tq_null": false,
+      "table_regions": [
+        [
+          500,
+          679,
+          1253,
+          827
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 4,
+      "page_number": 5,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "schematic",
+      "image_fidelity": {
+        "effective_dpi": 363.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 3208.0,
+        "rms_contrast": 70.8,
+        "speckle_index": 116.48,
+        "skew_deg": 0.0,
+        "render_dpi": 300.0
+      },
+      "if_score": 92.0,
+      "if_deductions": [
+        {
+          "code": "speckle",
+          "points": 8.0,
+          "reason": "background speckle 116.5 exceeds 6 (noisy background per 100k pixels)"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 269,
+        "mean_conf": 90.3,
+        "low_conf_fraction": 0.045,
+        "small_text_conf": 69.7,
+        "small_text_count": 4,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": false,
+        "null_reason": null,
+        "notes": []
+      },
+      "tq_as_shipped_score": 90.0,
+      "tq_deductions": [
+        {
+          "code": "small_text",
+          "points": 10.0,
+          "reason": "small text (bbox <= 18 px, 4 words) averages confidence 70, below 70"
+        }
+      ],
+      "tq_achievable_score": null,
+      "tq_effective_score": 90.0,
+      "tq_null": false,
+      "table_regions": [
+        [
+          109,
+          1048,
+          724,
+          721
+        ],
+        [
+          101,
+          1830,
+          722,
+          719
+        ],
+        [
+          104,
+          2609,
+          726,
+          721
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 5,
+      "page_number": 6,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "schematic",
+      "image_fidelity": {
+        "effective_dpi": 362.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 3492.9,
+        "rms_contrast": 74.8,
+        "speckle_index": 130.18,
+        "skew_deg": 0.0,
+        "render_dpi": 300.0
+      },
+      "if_score": 92.0,
+      "if_deductions": [
+        {
+          "code": "speckle",
+          "points": 8.0,
+          "reason": "background speckle 130.2 exceeds 6 (noisy background per 100k pixels)"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 207,
+        "mean_conf": 88.6,
+        "low_conf_fraction": 0.063,
+        "small_text_conf": 58.5,
+        "small_text_count": 4,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": false,
+        "null_reason": null,
+        "notes": []
+      },
+      "tq_as_shipped_score": 90.0,
+      "tq_deductions": [
+        {
+          "code": "small_text",
+          "points": 10.0,
+          "reason": "small text (bbox <= 18 px, 4 words) averages confidence 58, below 70"
+        }
+      ],
+      "tq_achievable_score": null,
+      "tq_effective_score": 90.0,
+      "tq_null": false,
+      "table_regions": [
+        [
+          1499,
+          861,
+          654,
+          458
+        ],
+        [
+          114,
+          863,
+          653,
+          452
+        ],
+        [
+          805,
+          863,
+          655,
+          459
+        ],
+        [
+          804,
+          1358,
+          653,
+          456
+        ],
+        [
+          110,
+          1361,
+          654,
+          457
+        ],
+        [
+          1498,
+          1362,
+          652,
+          452
+        ],
+        [
+          755,
+          2389,
+          743,
+          761
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 6,
+      "page_number": 7,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "schematic",
+      "image_fidelity": {
+        "effective_dpi": 363.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 1710.8,
+        "rms_contrast": 49.7,
+        "speckle_index": 21.82,
+        "skew_deg": 0.0,
+        "render_dpi": 300.0
+      },
+      "if_score": 92.0,
+      "if_deductions": [
+        {
+          "code": "speckle",
+          "points": 8.0,
+          "reason": "background speckle 21.8 exceeds 6 (noisy background per 100k pixels)"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 497,
+        "mean_conf": 79.9,
+        "low_conf_fraction": 0.185,
+        "small_text_conf": 51.6,
+        "small_text_count": 71,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": false,
+        "null_reason": null,
+        "notes": []
+      },
+      "tq_as_shipped_score": 88.5,
+      "tq_deductions": [
+        {
+          "code": "low_mean_confidence",
+          "points": 0.0,
+          "reason": "mean OCR confidence 80 is below 80"
+        },
+        {
+          "code": "low_confidence_fraction",
+          "points": 1.5,
+          "reason": "19% of words fall below confidence 60 (threshold 15%)"
+        },
+        {
+          "code": "small_text",
+          "points": 10.0,
+          "reason": "small text (bbox <= 18 px, 71 words) averages confidence 52, below 70"
+        }
+      ],
+      "tq_achievable_score": null,
+      "tq_effective_score": 88.5,
+      "tq_null": false,
+      "table_regions": [
+        [
+          111,
+          248,
+          2032,
+          3008
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 7,
+      "page_number": 8,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "text",
+      "image_fidelity": {
+        "effective_dpi": 363.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 332.7,
+        "rms_contrast": 21.9,
+        "speckle_index": 5.31,
+        "skew_deg": 0.0,
+        "render_dpi": 300.0
+      },
+      "if_score": 100.0,
+      "if_deductions": [],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 32,
+        "mean_conf": 83.1,
+        "low_conf_fraction": 0.125,
+        "small_text_conf": 37.1,
+        "small_text_count": 3,
+        "refdes_conf": 91.9,
+        "refdes_count": 2,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": false,
+        "null_reason": null,
+        "notes": []
+      },
+      "tq_as_shipped_score": 90.0,
+      "tq_deductions": [
+        {
+          "code": "small_text",
+          "points": 10.0,
+          "reason": "small text (bbox <= 18 px, 3 words) averages confidence 37, below 70"
+        }
+      ],
+      "tq_achievable_score": null,
+      "tq_effective_score": 90.0,
+      "tq_null": false,
+      "table_regions": [],
+      "errors": []
+    }
+  ]
+}

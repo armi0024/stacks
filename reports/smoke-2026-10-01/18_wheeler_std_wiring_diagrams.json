@@ -1,0 +1,240 @@
+{
+  "report_schema_version": "1",
+  "tool": {
+    "name": "stacks-analyze",
+    "code_version": "0.1.0",
+    "pymupdf_version": "1.28.2"
+  },
+  "analysis_config_hash": "2d1607d2e7efe31d4d4d79fcb5c09869888124970c8bfe267c92a1247e531ec8",
+  "file": {
+    "path": "smoke/18_wheeler_std_wiring_diagrams/18 Wheeler STD Wiring Diagrams.pdf",
+    "sha256": "195f8b16abaf663ccfd36f71e07c9a2376578953b24e7bd3281adf92c891730d",
+    "page_count": 2
+  },
+  "coverage": {
+    "mode": "assess",
+    "sampled_indices": [
+      0,
+      1
+    ],
+    "assessed_pages": 2,
+    "unassessed_pages": 0
+  },
+  "language": {
+    "detected": "rus",
+    "used": null,
+    "supported": false,
+    "reason": "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized"
+  },
+  "structural": {
+    "filters_seen": [
+      "ASCII85Decode",
+      "CCITTFaxDecode "
+    ],
+    "jbig2_image_count": 0,
+    "risk_flags": [],
+    "reasons": []
+  },
+  "document_scores": {
+    "if_text": 100.0,
+    "tq_text": null,
+    "if_schem": null,
+    "tq_schem": null,
+    "image_adequate": true,
+    "text_adequate": null,
+    "adequacy_basis": "primary measurements only (never blended fitness)",
+    "fitness_text_ranking_only": null,
+    "fitness_schematic_ranking_only": null,
+    "grades": {
+      "if_text": "A",
+      "tq_text": null,
+      "if_schem": null,
+      "tq_schem": null
+    },
+    "text_page_count": 2,
+    "schematic_page_count": 0
+  },
+  "page_gates": {
+    "basis": "as_shipped",
+    "required_pages": [],
+    "blocking": [],
+    "degraded": [],
+    "pages_below_adequacy": {
+      "image": 0,
+      "text": 0
+    }
+  },
+  "completeness": {
+    "status": "unknown",
+    "missing_fraction": 0.0,
+    "reasons": [
+      "single representation (N=1): completeness unknown, missing_fraction 0, no penalty, expected-length floor inapplicable (SPEC P4)"
+    ]
+  },
+  "schematic_implied": false,
+  "recommended_action": {
+    "action": "USABLE",
+    "labels": [
+      "text quality unknown",
+      "unverified"
+    ],
+    "provisional": false,
+    "reasons": [
+      "image and text are adequate and page gates pass",
+      "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized",
+      "completeness is unknown: labeled \"unverified\", not penalized"
+    ]
+  },
+  "pages": [
+    {
+      "page_index": 0,
+      "page_number": 1,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "text",
+      "image_fidelity": {
+        "effective_dpi": 291.5,
+        "bpc": 1,
+        "is_1bit": true,
+        "sharpness": 1536.7,
+        "rms_contrast": 59.2,
+        "speckle_index": 0.67,
+        "skew_deg": 0.0,
+        "render_dpi": 291.5
+      },
+      "if_score": 100.0,
+      "if_deductions": [],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 0,
+        "mean_conf": null,
+        "low_conf_fraction": null,
+        "small_text_conf": null,
+        "small_text_count": 0,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": true,
+        "null_reason": "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized",
+        "notes": []
+      },
+      "tq_as_shipped_score": null,
+      "tq_deductions": [],
+      "tq_achievable_score": null,
+      "tq_effective_score": null,
+      "tq_null": true,
+      "table_regions": [
+        [
+          379,
+          23,
+          1399,
+          2778
+        ],
+        [
+          2362,
+          23,
+          2328,
+          2782
+        ],
+        [
+          2510,
+          374,
+          1241,
+          889
+        ],
+        [
+          870,
+          383,
+          897,
+          391
+        ],
+        [
+          3992,
+          941,
+          606,
+          357
+        ],
+        [
+          2098,
+          1469,
+          533,
+          262
+        ],
+        [
+          462,
+          1667,
+          608,
+          385
+        ],
+        [
+          458,
+          1888,
+          619,
+          171
+        ],
+        [
+          3814,
+          2108,
+          758,
+          440
+        ],
+        [
+          1732,
+          2325,
+          797,
+          334
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 1,
+      "page_number": 2,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "text",
+      "image_fidelity": {
+        "effective_dpi": 328.1,
+        "bpc": 1,
+        "is_1bit": true,
+        "sharpness": 1006.3,
+        "rms_contrast": 47.5,
+        "speckle_index": 0.2,
+        "skew_deg": 0.0,
+        "render_dpi": 300.0
+      },
+      "if_score": 100.0,
+      "if_deductions": [],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 0,
+        "mean_conf": null,
+        "low_conf_fraction": null,
+        "small_text_conf": null,
+        "small_text_count": 0,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": true,
+        "null_reason": "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized",
+        "notes": []
+      },
+      "tq_as_shipped_score": null,
+      "tq_deductions": [],
+      "tq_achievable_score": null,
+      "tq_effective_score": null,
+      "tq_null": true,
+      "table_regions": [
+        [
+          1638,
+          123,
+          3256,
+          2688
+        ]
+      ],
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,1724 @@
+{
+  "report_schema_version": "1",
+  "tool": {
+    "name": "stacks-analyze",
+    "code_version": "0.1.0",
+    "pymupdf_version": "1.28.2"
+  },
+  "analysis_config_hash": "2d1607d2e7efe31d4d4d79fcb5c09869888124970c8bfe267c92a1247e531ec8",
+  "file": {
+    "path": "smoke/1942_schematics_capcom/1942_Schematics_(Capcom).pdf",
+    "sha256": "ebce82bfbf24c85543abb6103943c13cd6cf622d183983a8b5f4a963ea1b8ac1",
+    "page_count": 16
+  },
+  "coverage": {
+    "mode": "assess",
+    "sampled_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "assessed_pages": 16,
+    "unassessed_pages": 0
+  },
+  "language": {
+    "detected": "rus",
+    "used": null,
+    "supported": false,
+    "reason": "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized"
+  },
+  "structural": {
+    "filters_seen": [
+      "DCTDecode"
+    ],
+    "jbig2_image_count": 0,
+    "risk_flags": [],
+    "reasons": []
+  },
+  "document_scores": {
+    "if_text": 61.5,
+    "tq_text": null,
+    "if_schem": 58.0,
+    "tq_schem": null,
+    "image_adequate": false,
+    "text_adequate": null,
+    "adequacy_basis": "primary measurements only (never blended fitness)",
+    "fitness_text_ranking_only": null,
+    "fitness_schematic_ranking_only": null,
+    "grades": {
+      "if_text": "D",
+      "tq_text": null,
+      "if_schem": "D",
+      "tq_schem": null
+    },
+    "text_page_count": 5,
+    "schematic_page_count": 11
+  },
+  "page_gates": {
+    "basis": "as_shipped",
+    "required_pages": [
+      1,
+      3,
+      5,
+      7,
+      8,
+      9,
+      10,
+      12,
+      13,
+      14,
+      15
+    ],
+    "blocking": [
+      {
+        "page_index": 6,
+        "dimension": "image",
+        "score": 47.8,
+        "reason": "page 7: required-content page image fidelity 48 is below the hard floor 50 \u2014 blocks USABLE regardless of document averages"
+      },
+      {
+        "page_index": 7,
+        "dimension": "image",
+        "score": 47.8,
+        "reason": "page 8: required-content page image fidelity 48 is below the hard floor 50 \u2014 blocks USABLE regardless of document averages"
+      },
+      {
+        "page_index": 14,
+        "dimension": "image",
+        "score": 47.8,
+        "reason": "page 15: required-content page image fidelity 48 is below the hard floor 50 \u2014 blocks USABLE regardless of document averages"
+      }
+    ],
+    "degraded": [
+      {
+        "page_index": 0,
+        "dimension": "image",
+        "score": 54.8,
+        "reason": "page 1: required-content page image fidelity 55 is between 50 and the adequacy threshold 75 \u2014 degraded critical page"
+      },
+      {
+        "page_index": 2,
+        "dimension": "image",
+        "score": 62.8,
+        "reason": "page 3: required-content page image fidelity 63 is between 50 and the adequacy threshold 75 \u2014 degraded critical page"
+      },
+      {
+        "page_index": 4,
+        "dimension": "image",
+        "score": 62.8,
+        "reason": "page 5: required-content page image fidelity 63 is between 50 and the adequacy threshold 75 \u2014 degraded critical page"
+      },
+      {
+        "page_index": 8,
+        "dimension": "image",
+        "score": 62.8,
+        "reason": "page 9: required-content page image fidelity 63 is between 50 and the adequacy threshold 75 \u2014 degraded critical page"
+      },
+      {
+        "page_index": 9,
+        "dimension": "image",
+        "score": 62.8,
+        "reason": "page 10: required-content page image fidelity 63 is between 50 and the adequacy threshold 75 \u2014 degraded critical page"
+      },
+      {
+        "page_index": 11,
+        "dimension": "image",
+        "score": 62.8,
+        "reason": "page 12: required-content page image fidelity 63 is between 50 and the adequacy threshold 75 \u2014 degraded critical page"
+      },
+      {
+        "page_index": 12,
+        "dimension": "image",
+        "score": 62.8,
+        "reason": "page 13: required-content page image fidelity 63 is between 50 and the adequacy threshold 75 \u2014 degraded critical page"
+      },
+      {
+        "page_index": 13,
+        "dimension": "image",
+        "score": 62.8,
+        "reason": "page 14: required-content page image fidelity 63 is between 50 and the adequacy threshold 75 \u2014 degraded critical page"
+      }
+    ],
+    "pages_below_adequacy": {
+      "image": 16,
+      "text": 0
+    }
+  },
+  "completeness": {
+    "status": "unknown",
+    "missing_fraction": 0.0,
+    "reasons": [
+      "single representation (N=1): completeness unknown, missing_fraction 0, no penalty, expected-length floor inapplicable (SPEC P4)"
+    ]
+  },
+  "schematic_implied": true,
+  "recommended_action": {
+    "action": "RESCAN_CANDIDATE",
+    "labels": [
+      "degraded critical page"
+    ],
+    "provisional": false,
+    "reasons": [
+      "image fidelity is inadequate on this representation; a full RESCAN decision needs the group/coverage check (every group copy inadequate among sources successfully checked), which is pending in standalone analysis",
+      "page 7: required-content page image fidelity 48 is below the hard floor 50 \u2014 blocks USABLE regardless of document averages",
+      "page 8: required-content page image fidelity 48 is below the hard floor 50 \u2014 blocks USABLE regardless of document averages",
+      "page 15: required-content page image fidelity 48 is below the hard floor 50 \u2014 blocks USABLE regardless of document averages",
+      "worst pages: page 7 (IF 48), page 8 (IF 48), page 15 (IF 48), page 4 (IF 52), page 6 (IF 52)",
+      "page 1: required-content page image fidelity 55 is between 50 and the adequacy threshold 75 \u2014 degraded critical page",
+      "page 3: required-content page image fidelity 63 is between 50 and the adequacy threshold 75 \u2014 degraded critical page",
+      "page 5: required-content page image fidelity 63 is between 50 and the adequacy threshold 75 \u2014 degraded critical page",
+      "page 9: required-content page image fidelity 63 is between 50 and the adequacy threshold 75 \u2014 degraded critical page",
+      "page 10: required-content page image fidelity 63 is between 50 and the adequacy threshold 75 \u2014 degraded critical page",
+      "page 12: required-content page image fidelity 63 is between 50 and the adequacy threshold 75 \u2014 degraded critical page",
+      "page 13: required-content page image fidelity 63 is between 50 and the adequacy threshold 75 \u2014 degraded critical page",
+      "page 14: required-content page image fidelity 63 is between 50 and the adequacy threshold 75 \u2014 degraded critical page"
+    ]
+  },
+  "pages": [
+    {
+      "page_index": 0,
+      "page_number": 1,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "schematic",
+      "image_fidelity": {
+        "effective_dpi": 96.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 212.1,
+        "rms_contrast": 32.2,
+        "speckle_index": 6.15,
+        "skew_deg": 0.0,
+        "render_dpi": 96.0
+      },
+      "if_score": 54.8,
+      "if_deductions": [
+        {
+          "code": "dpi_below_target",
+          "points": 27.2,
+          "reason": "effective DPI 96 (from rendered placement) is below the 300 DPI target for schematic-class pages"
+        },
+        {
+          "code": "dpi_very_low",
+          "points": 10.0,
+          "reason": "effective DPI 96 is below 150"
+        },
+        {
+          "code": "speckle",
+          "points": 8.0,
+          "reason": "background speckle 6.1 exceeds 6 (noisy background per 100k pixels)"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 0,
+        "mean_conf": null,
+        "low_conf_fraction": null,
+        "small_text_conf": null,
+        "small_text_count": 0,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": true,
+        "null_reason": "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized",
+        "notes": []
+      },
+      "tq_as_shipped_score": null,
+      "tq_deductions": [],
+      "tq_achievable_score": null,
+      "tq_effective_score": null,
+      "tq_null": true,
+      "table_regions": [
+        [
+          559,
+          339,
+          1165,
+          1364
+        ],
+        [
+          1601,
+          468,
+          908,
+          1035
+        ],
+        [
+          2695,
+          772,
+          452,
+          389
+        ],
+        [
+          1702,
+          855,
+          1265,
+          662
+        ],
+        [
+          1863,
+          1091,
+          1277,
+          847
+        ],
+        [
+          1322,
+          1483,
+          377,
+          793
+        ],
+        [
+          742,
+          1675,
+          512,
+          562
+        ],
+        [
+          1971,
+          2120,
+          1264,
+          237
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 1,
+      "page_number": 2,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "text",
+      "image_fidelity": {
+        "effective_dpi": 96.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 154.9,
+        "rms_contrast": 29.7,
+        "speckle_index": 3.91,
+        "skew_deg": 0.0,
+        "render_dpi": 96.0
+      },
+      "if_score": 67.5,
+      "if_deductions": [
+        {
+          "code": "dpi_below_target",
+          "points": 22.5,
+          "reason": "effective DPI 96 (from rendered placement) is below the 220 DPI target for text-class pages"
+        },
+        {
+          "code": "dpi_very_low",
+          "points": 10.0,
+          "reason": "effective DPI 96 is below 150"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 0,
+        "mean_conf": null,
+        "low_conf_fraction": null,
+        "small_text_conf": null,
+        "small_text_count": 0,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": true,
+        "null_reason": "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized",
+        "notes": []
+      },
+      "tq_as_shipped_score": null,
+      "tq_deductions": [],
+      "tq_achievable_score": null,
+      "tq_effective_score": null,
+      "tq_null": true,
+      "table_regions": [
+        [
+          2072,
+          278,
+          356,
+          490
+        ],
+        [
+          2438,
+          313,
+          584,
+          356
+        ],
+        [
+          1451,
+          314,
+          629,
+          344
+        ],
+        [
+          297,
+          344,
+          535,
+          1010
+        ],
+        [
+          353,
+          544,
+          2617,
+          1672
+        ],
+        [
+          1872,
+          896,
+          471,
+          199
+        ],
+        [
+          716,
+          929,
+          345,
+          1092
+        ],
+        [
+          393,
+          1548,
+          434,
+          391
+        ],
+        [
+          1774,
+          1562,
+          1290,
+          805
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 2,
+      "page_number": 3,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "schematic",
+      "image_fidelity": {
+        "effective_dpi": 96.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 163.2,
+        "rms_contrast": 31.3,
+        "speckle_index": 2.83,
+        "skew_deg": 0.0,
+        "render_dpi": 96.0
+      },
+      "if_score": 62.8,
+      "if_deductions": [
+        {
+          "code": "dpi_below_target",
+          "points": 27.2,
+          "reason": "effective DPI 96 (from rendered placement) is below the 300 DPI target for schematic-class pages"
+        },
+        {
+          "code": "dpi_very_low",
+          "points": 10.0,
+          "reason": "effective DPI 96 is below 150"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 0,
+        "mean_conf": null,
+        "low_conf_fraction": null,
+        "small_text_conf": null,
+        "small_text_count": 0,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": true,
+        "null_reason": "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized",
+        "notes": []
+      },
+      "tq_as_shipped_score": null,
+      "tq_deductions": [],
+      "tq_achievable_score": null,
+      "tq_effective_score": null,
+      "tq_null": true,
+      "table_regions": [
+        [
+          106,
+          169,
+          1122,
+          2153
+        ],
+        [
+          267,
+          181,
+          2897,
+          2151
+        ],
+        [
+          588,
+          325,
+          2495,
+          1967
+        ],
+        [
+          256,
+          519,
+          1247,
+          1354
+        ],
+        [
+          1625,
+          1622,
+          420,
+          140
+        ],
+        [
+          640,
+          1651,
+          825,
+          151
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 3,
+      "page_number": 4,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "text",
+      "image_fidelity": {
+        "effective_dpi": 96.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 68.3,
+        "rms_contrast": 20.4,
+        "speckle_index": 2.33,
+        "skew_deg": 0.0,
+        "render_dpi": 96.0
+      },
+      "if_score": 52.5,
+      "if_deductions": [
+        {
+          "code": "dpi_below_target",
+          "points": 22.5,
+          "reason": "effective DPI 96 (from rendered placement) is below the 220 DPI target for text-class pages"
+        },
+        {
+          "code": "dpi_very_low",
+          "points": 10.0,
+          "reason": "effective DPI 96 is below 150"
+        },
+        {
+          "code": "low_sharpness",
+          "points": 15.0,
+          "reason": "Laplacian sharpness 68 is below 120 (blurry capture)"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 0,
+        "mean_conf": null,
+        "low_conf_fraction": null,
+        "small_text_conf": null,
+        "small_text_count": 0,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": true,
+        "null_reason": "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized",
+        "notes": []
+      },
+      "tq_as_shipped_score": null,
+      "tq_deductions": [],
+      "tq_achievable_score": null,
+      "tq_effective_score": null,
+      "tq_null": true,
+      "table_regions": [
+        [
+          1936,
+          190,
+          1354,
+          2153
+        ],
+        [
+          2043,
+          787,
+          539,
+          806
+        ],
+        [
+          700,
+          904,
+          867,
+          375
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 4,
+      "page_number": 5,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "schematic",
+      "image_fidelity": {
+        "effective_dpi": 96.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 135.2,
+        "rms_contrast": 28.7,
+        "speckle_index": 2.84,
+        "skew_deg": 0.0,
+        "render_dpi": 96.0
+      },
+      "if_score": 62.8,
+      "if_deductions": [
+        {
+          "code": "dpi_below_target",
+          "points": 27.2,
+          "reason": "effective DPI 96 (from rendered placement) is below the 300 DPI target for schematic-class pages"
+        },
+        {
+          "code": "dpi_very_low",
+          "points": 10.0,
+          "reason": "effective DPI 96 is below 150"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 0,
+        "mean_conf": null,
+        "low_conf_fraction": null,
+        "small_text_conf": null,
+        "small_text_count": 0,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": true,
+        "null_reason": "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized",
+        "notes": []
+      },
+      "tq_as_shipped_score": null,
+      "tq_deductions": [],
+      "tq_achievable_score": null,
+      "tq_effective_score": null,
+      "tq_null": true,
+      "table_regions": [
+        [
+          1853,
+          236,
+          1297,
+          2145
+        ],
+        [
+          2575,
+          398,
+          420,
+          180
+        ],
+        [
+          1344,
+          417,
+          1010,
+          145
+        ],
+        [
+          1185,
+          535,
+          1014,
+          218
+        ],
+        [
+          883,
+          590,
+          566,
+          181
+        ],
+        [
+          309,
+          612,
+          2719,
+          1508
+        ],
+        [
+          634,
+          1230,
+          432,
+          313
+        ],
+        [
+          1599,
+          1271,
+          336,
+          235
+        ],
+        [
+          1443,
+          1809,
+          659,
+          311
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 5,
+      "page_number": 6,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "text",
+      "image_fidelity": {
+        "effective_dpi": 96.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 118.0,
+        "rms_contrast": 26.1,
+        "speckle_index": 0.91,
+        "skew_deg": 0.0,
+        "render_dpi": 96.0
+      },
+      "if_score": 52.5,
+      "if_deductions": [
+        {
+          "code": "dpi_below_target",
+          "points": 22.5,
+          "reason": "effective DPI 96 (from rendered placement) is below the 220 DPI target for text-class pages"
+        },
+        {
+          "code": "dpi_very_low",
+          "points": 10.0,
+          "reason": "effective DPI 96 is below 150"
+        },
+        {
+          "code": "low_sharpness",
+          "points": 15.0,
+          "reason": "Laplacian sharpness 118 is below 120 (blurry capture)"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 0,
+        "mean_conf": null,
+        "low_conf_fraction": null,
+        "small_text_conf": null,
+        "small_text_count": 0,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": true,
+        "null_reason": "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized",
+        "notes": []
+      },
+      "tq_as_shipped_score": null,
+      "tq_deductions": [],
+      "tq_achievable_score": null,
+      "tq_effective_score": null,
+      "tq_null": true,
+      "table_regions": [
+        [
+          61,
+          157,
+          396,
+          2162
+        ],
+        [
+          278,
+          209,
+          2901,
+          2154
+        ],
+        [
+          1399,
+          215,
+          1042,
+          556
+        ],
+        [
+          1935,
+          223,
+          845,
+          480
+        ],
+        [
+          1306,
+          412,
+          529,
+          354
+        ],
+        [
+          799,
+          496,
+          515,
+          290
+        ],
+        [
+          1958,
+          711,
+          638,
+          417
+        ],
+        [
+          329,
+          740,
+          2016,
+          732
+        ],
+        [
+          990,
+          820,
+          979,
+          130
+        ],
+        [
+          1249,
+          1137,
+          1180,
+          260
+        ],
+        [
+          661,
+          1211,
+          478,
+          309
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 6,
+      "page_number": 7,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "schematic",
+      "image_fidelity": {
+        "effective_dpi": 96.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 112.1,
+        "rms_contrast": 26.6,
+        "speckle_index": 1.96,
+        "skew_deg": 0.0,
+        "render_dpi": 96.0
+      },
+      "if_score": 47.8,
+      "if_deductions": [
+        {
+          "code": "dpi_below_target",
+          "points": 27.2,
+          "reason": "effective DPI 96 (from rendered placement) is below the 300 DPI target for schematic-class pages"
+        },
+        {
+          "code": "dpi_very_low",
+          "points": 10.0,
+          "reason": "effective DPI 96 is below 150"
+        },
+        {
+          "code": "low_sharpness",
+          "points": 15.0,
+          "reason": "Laplacian sharpness 112 is below 120 (blurry capture)"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 0,
+        "mean_conf": null,
+        "low_conf_fraction": null,
+        "small_text_conf": null,
+        "small_text_count": 0,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": true,
+        "null_reason": "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized",
+        "notes": []
+      },
+      "tq_as_shipped_score": null,
+      "tq_deductions": [],
+      "tq_achievable_score": null,
+      "tq_effective_score": null,
+      "tq_null": true,
+      "table_regions": [
+        [
+          38,
+          259,
+          1154,
+          2142
+        ],
+        [
+          1196,
+          265,
+          1911,
+          2132
+        ],
+        [
+          540,
+          346,
+          2333,
+          1927
+        ],
+        [
+          510,
+          612,
+          368,
+          474
+        ],
+        [
+          818,
+          736,
+          558,
+          274
+        ],
+        [
+          654,
+          1097,
+          353,
+          747
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 7,
+      "page_number": 8,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "schematic",
+      "image_fidelity": {
+        "effective_dpi": 96.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 85.5,
+        "rms_contrast": 22.9,
+        "speckle_index": 2.55,
+        "skew_deg": 0.0,
+        "render_dpi": 96.0
+      },
+      "if_score": 47.8,
+      "if_deductions": [
+        {
+          "code": "dpi_below_target",
+          "points": 27.2,
+          "reason": "effective DPI 96 (from rendered placement) is below the 300 DPI target for schematic-class pages"
+        },
+        {
+          "code": "dpi_very_low",
+          "points": 10.0,
+          "reason": "effective DPI 96 is below 150"
+        },
+        {
+          "code": "low_sharpness",
+          "points": 15.0,
+          "reason": "Laplacian sharpness 86 is below 120 (blurry capture)"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 0,
+        "mean_conf": null,
+        "low_conf_fraction": null,
+        "small_text_conf": null,
+        "small_text_count": 0,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": true,
+        "null_reason": "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized",
+        "notes": []
+      },
+      "tq_as_shipped_score": null,
+      "tq_deductions": [],
+      "tq_achievable_score": null,
+      "tq_effective_score": null,
+      "tq_null": true,
+      "table_regions": [
+        [
+          225,
+          190,
+          2935,
+          2164
+        ],
+        [
+          1098,
+          356,
+          785,
+          786
+        ],
+        [
+          602,
+          665,
+          432,
+          276
+        ],
+        [
+          742,
+          1212,
+          1160,
+          393
+        ],
+        [
+          1550,
+          1603,
+          1054,
+          391
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 8,
+      "page_number": 9,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "schematic",
+      "image_fidelity": {
+        "effective_dpi": 96.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 120.3,
+        "rms_contrast": 27.9,
+        "speckle_index": 1.46,
+        "skew_deg": 0.0,
+        "render_dpi": 96.0
+      },
+      "if_score": 62.8,
+      "if_deductions": [
+        {
+          "code": "dpi_below_target",
+          "points": 27.2,
+          "reason": "effective DPI 96 (from rendered placement) is below the 300 DPI target for schematic-class pages"
+        },
+        {
+          "code": "dpi_very_low",
+          "points": 10.0,
+          "reason": "effective DPI 96 is below 150"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 0,
+        "mean_conf": null,
+        "low_conf_fraction": null,
+        "small_text_conf": null,
+        "small_text_count": 0,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": true,
+        "null_reason": "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized",
+        "notes": []
+      },
+      "tq_as_shipped_score": null,
+      "tq_deductions": [],
+      "tq_achievable_score": null,
+      "tq_effective_score": null,
+      "tq_null": true,
+      "table_regions": [
+        [
+          57,
+          214,
+          3087,
+          2163
+        ],
+        [
+          1890,
+          293,
+          795,
+          816
+        ],
+        [
+          451,
+          295,
+          1257,
+          1930
+        ],
+        [
+          663,
+          493,
+          434,
+          146
+        ],
+        [
+          1782,
+          1530,
+          860,
+          475
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 9,
+      "page_number": 10,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "schematic",
+      "image_fidelity": {
+        "effective_dpi": 96.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 137.3,
+        "rms_contrast": 30.0,
+        "speckle_index": 1.85,
+        "skew_deg": 0.0,
+        "render_dpi": 96.0
+      },
+      "if_score": 62.8,
+      "if_deductions": [
+        {
+          "code": "dpi_below_target",
+          "points": 27.2,
+          "reason": "effective DPI 96 (from rendered placement) is below the 300 DPI target for schematic-class pages"
+        },
+        {
+          "code": "dpi_very_low",
+          "points": 10.0,
+          "reason": "effective DPI 96 is below 150"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 0,
+        "mean_conf": null,
+        "low_conf_fraction": null,
+        "small_text_conf": null,
+        "small_text_count": 0,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": true,
+        "null_reason": "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized",
+        "notes": []
+      },
+      "tq_as_shipped_score": null,
+      "tq_deductions": [],
+      "tq_achievable_score": null,
+      "tq_effective_score": null,
+      "tq_null": true,
+      "table_regions": [
+        [
+          42,
+          166,
+          3103,
+          2166
+        ],
+        [
+          296,
+          322,
+          2718,
+          1672
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 10,
+      "page_number": 11,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "text",
+      "image_fidelity": {
+        "effective_dpi": 96.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 128.5,
+        "rms_contrast": 28.7,
+        "speckle_index": 1.29,
+        "skew_deg": 0.0,
+        "render_dpi": 96.0
+      },
+      "if_score": 67.5,
+      "if_deductions": [
+        {
+          "code": "dpi_below_target",
+          "points": 22.5,
+          "reason": "effective DPI 96 (from rendered placement) is below the 220 DPI target for text-class pages"
+        },
+        {
+          "code": "dpi_very_low",
+          "points": 10.0,
+          "reason": "effective DPI 96 is below 150"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 0,
+        "mean_conf": null,
+        "low_conf_fraction": null,
+        "small_text_conf": null,
+        "small_text_count": 0,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": true,
+        "null_reason": "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized",
+        "notes": []
+      },
+      "tq_as_shipped_score": null,
+      "tq_deductions": [],
+      "tq_achievable_score": null,
+      "tq_effective_score": null,
+      "tq_null": true,
+      "table_regions": [
+        [
+          0,
+          0,
+          993,
+          2551
+        ],
+        [
+          68,
+          186,
+          3112,
+          2177
+        ],
+        [
+          2478,
+          326,
+          359,
+          701
+        ],
+        [
+          808,
+          394,
+          2033,
+          1202
+        ],
+        [
+          969,
+          406,
+          1987,
+          1267
+        ],
+        [
+          1714,
+          415,
+          582,
+          1093
+        ],
+        [
+          1399,
+          1370,
+          1636,
+          528
+        ],
+        [
+          616,
+          1423,
+          1836,
+          823
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 11,
+      "page_number": 12,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "schematic",
+      "image_fidelity": {
+        "effective_dpi": 96.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 123.2,
+        "rms_contrast": 28.9,
+        "speckle_index": 1.5,
+        "skew_deg": 0.0,
+        "render_dpi": 96.0
+      },
+      "if_score": 62.8,
+      "if_deductions": [
+        {
+          "code": "dpi_below_target",
+          "points": 27.2,
+          "reason": "effective DPI 96 (from rendered placement) is below the 300 DPI target for schematic-class pages"
+        },
+        {
+          "code": "dpi_very_low",
+          "points": 10.0,
+          "reason": "effective DPI 96 is below 150"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 0,
+        "mean_conf": null,
+        "low_conf_fraction": null,
+        "small_text_conf": null,
+        "small_text_count": 0,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": true,
+        "null_reason": "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized",
+        "notes": []
+      },
+      "tq_as_shipped_score": null,
+      "tq_deductions": [],
+      "tq_achievable_score": null,
+      "tq_effective_score": null,
+      "tq_null": true,
+      "table_regions": [
+        [
+          60,
+          200,
+          3114,
+          2164
+        ],
+        [
+          377,
+          385,
+          2500,
+          1633
+        ],
+        [
+          349,
+          387,
+          1035,
+          1013
+        ],
+        [
+          380,
+          812,
+          993,
+          666
+        ],
+        [
+          720,
+          1521,
+          509,
+          228
+        ],
+        [
+          935,
+          1522,
+          914,
+          188
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 12,
+      "page_number": 13,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "schematic",
+      "image_fidelity": {
+        "effective_dpi": 96.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 157.7,
+        "rms_contrast": 32.4,
+        "speckle_index": 1.44,
+        "skew_deg": 0.0,
+        "render_dpi": 96.0
+      },
+      "if_score": 62.8,
+      "if_deductions": [
+        {
+          "code": "dpi_below_target",
+          "points": 27.2,
+          "reason": "effective DPI 96 (from rendered placement) is below the 300 DPI target for schematic-class pages"
+        },
+        {
+          "code": "dpi_very_low",
+          "points": 10.0,
+          "reason": "effective DPI 96 is below 150"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 0,
+        "mean_conf": null,
+        "low_conf_fraction": null,
+        "small_text_conf": null,
+        "small_text_count": 0,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": true,
+        "null_reason": "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized",
+        "notes": []
+      },
+      "tq_as_shipped_score": null,
+      "tq_deductions": [],
+      "tq_achievable_score": null,
+      "tq_effective_score": null,
+      "tq_null": true,
+      "table_regions": [
+        [
+          53,
+          187,
+          3058,
+          2156
+        ],
+        [
+          2566,
+          217,
+          423,
+          643
+        ],
+        [
+          314,
+          223,
+          2640,
+          2045
+        ],
+        [
+          1013,
+          1414,
+          530,
+          224
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 13,
+      "page_number": 14,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "schematic",
+      "image_fidelity": {
+        "effective_dpi": 96.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 155.5,
+        "rms_contrast": 31.5,
+        "speckle_index": 1.99,
+        "skew_deg": 0.0,
+        "render_dpi": 96.0
+      },
+      "if_score": 62.8,
+      "if_deductions": [
+        {
+          "code": "dpi_below_target",
+          "points": 27.2,
+          "reason": "effective DPI 96 (from rendered placement) is below the 300 DPI target for schematic-class pages"
+        },
+        {
+          "code": "dpi_very_low",
+          "points": 10.0,
+          "reason": "effective DPI 96 is below 150"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 0,
+        "mean_conf": null,
+        "low_conf_fraction": null,
+        "small_text_conf": null,
+        "small_text_count": 0,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": true,
+        "null_reason": "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized",
+        "notes": []
+      },
+      "tq_as_shipped_score": null,
+      "tq_deductions": [],
+      "tq_achievable_score": null,
+      "tq_effective_score": null,
+      "tq_null": true,
+      "table_regions": [
+        [
+          0,
+          0,
+          788,
+          2513
+        ],
+        [
+          49,
+          142,
+          3134,
+          2169
+        ],
+        [
+          501,
+          208,
+          1975,
+          1587
+        ],
+        [
+          2557,
+          235,
+          462,
+          779
+        ],
+        [
+          2303,
+          313,
+          796,
+          1479
+        ],
+        [
+          500,
+          368,
+          1012,
+          341
+        ],
+        [
+          500,
+          486,
+          818,
+          198
+        ],
+        [
+          498,
+          605,
+          628,
+          198
+        ],
+        [
+          500,
+          721,
+          701,
+          199
+        ],
+        [
+          501,
+          807,
+          934,
+          153
+        ],
+        [
+          501,
+          811,
+          973,
+          344
+        ],
+        [
+          615,
+          1008,
+          420,
+          186
+        ],
+        [
+          346,
+          1259,
+          1127,
+          216
+        ],
+        [
+          421,
+          1278,
+          935,
+          734
+        ],
+        [
+          1215,
+          1510,
+          372,
+          402
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 14,
+      "page_number": 15,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "schematic",
+      "image_fidelity": {
+        "effective_dpi": 96.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 85.1,
+        "rms_contrast": 23.6,
+        "speckle_index": 3.0,
+        "skew_deg": 0.0,
+        "render_dpi": 96.0
+      },
+      "if_score": 47.8,
+      "if_deductions": [
+        {
+          "code": "dpi_below_target",
+          "points": 27.2,
+          "reason": "effective DPI 96 (from rendered placement) is below the 300 DPI target for schematic-class pages"
+        },
+        {
+          "code": "dpi_very_low",
+          "points": 10.0,
+          "reason": "effective DPI 96 is below 150"
+        },
+        {
+          "code": "low_sharpness",
+          "points": 15.0,
+          "reason": "Laplacian sharpness 85 is below 120 (blurry capture)"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 0,
+        "mean_conf": null,
+        "low_conf_fraction": null,
+        "small_text_conf": null,
+        "small_text_count": 0,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": true,
+        "null_reason": "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized",
+        "notes": []
+      },
+      "tq_as_shipped_score": null,
+      "tq_deductions": [],
+      "tq_achievable_score": null,
+      "tq_effective_score": null,
+      "tq_null": true,
+      "table_regions": [
+        [
+          341,
+          182,
+          2824,
+          2138
+        ],
+        [
+          619,
+          355,
+          664,
+          390
+        ],
+        [
+          884,
+          779,
+          665,
+          583
+        ],
+        [
+          1556,
+          935,
+          952,
+          493
+        ],
+        [
+          882,
+          1049,
+          396,
+          313
+        ],
+        [
+          720,
+          1064,
+          1787,
+          798
+        ]
+      ],
+      "errors": []
+    },
+    {
+      "page_index": 15,
+      "page_number": 16,
+      "assessed": true,
+      "page_type": "image-only",
+      "content_class": "text",
+      "image_fidelity": {
+        "effective_dpi": 96.0,
+        "bpc": 8,
+        "is_1bit": false,
+        "sharpness": 170.8,
+        "rms_contrast": 33.8,
+        "speckle_index": 2.31,
+        "skew_deg": 0.0,
+        "render_dpi": 96.0
+      },
+      "if_score": 67.5,
+      "if_deductions": [
+        {
+          "code": "dpi_below_target",
+          "points": 22.5,
+          "reason": "effective DPI 96 (from rendered placement) is below the 220 DPI target for text-class pages"
+        },
+        {
+          "code": "dpi_very_low",
+          "points": 10.0,
+          "reason": "effective DPI 96 is below 150"
+        }
+      ],
+      "text_quality": {
+        "source": "ocr-fresh",
+        "word_count": 0,
+        "mean_conf": null,
+        "low_conf_fraction": null,
+        "small_text_conf": null,
+        "small_text_count": 0,
+        "refdes_conf": null,
+        "refdes_count": 0,
+        "garble_fraction": null,
+        "suspect": false,
+        "null": true,
+        "null_reason": "language 'rus' (detected on first pages) is not in the configured available set ['eng', 'jpn', 'jpn_vert']: TQ is null (unknown), never penalized",
+        "notes": []
+      },
+      "tq_as_shipped_score": null,
+      "tq_deductions": [],
+      "tq_achievable_score": null,
+      "tq_effective_score": null,
+      "tq_null": true,
+      "table_regions": [
+        [
+          1849,
+          198,
+          1352,
+          2140
+        ],
+        [
+          304,
+          341,
+          2811,
+          1789
+        ],
+        [
+          1626,
+          1384,
+          676,
+          169
+        ],
+        [
+          741,
+          1875,
+          710,
+          220
+        ],
+        [
+          784,
+          1890,
+          702,
+          216
+        ],
+        [
+          1287,
+          2004,
+          1444,
+          141
+        ]
+      ],
+      "errors": []
+    }
+  ]
+}

@@ -45,6 +45,8 @@ class PageResult:
     tq_achievable: tq_mod.TQMetrics | None = None
     tq_achievable_score: float | None = None
     tq_achievable_deductions: list = field(default_factory=list)
+    extracted_text: str | None = None
+    text_origin: str | None = None  # native-text | verbatim-ocr (9.2 labels)
     errors: list[str] = field(default_factory=list)
 
     @property
@@ -213,6 +215,13 @@ def analyze_page(
             res.if_metrics, res.content_class, s, force_schematic_target
         )
 
+    # embedded text is retrievable even on near-blank pages
+    if pd.words:
+        res.extracted_text = pd.text
+        res.text_origin = (
+            "verbatim-ocr" if _embedded_source(pd) == "embedded-ocr-layer" else "native-text"
+        )
+
     # --- text quality ---
     if res.content_class == "blank":
         res.tq = tq_mod.null_tq("none", "blank page: nothing to measure")
@@ -245,6 +254,8 @@ def analyze_page(
             try:
                 words = ocr.ocr_tsv(gray, lang.used)
                 res.tq = tq_mod.from_ocr(words, s.small_text_px, s.low_conf_threshold)
+                res.extracted_text = " ".join(w.text for w in words) or None
+                res.text_origin = "verbatim-ocr" if res.extracted_text else None
             except (RuntimeError, OSError) as e:
                 res.errors.append(f"OCR failed: {e}")
                 res.tq = tq_mod.null_tq("ocr-fresh", f"OCR failed: {e}")

@@ -74,7 +74,9 @@ class AnalyzerSettings:
     screening_max_pages: int = 16
 
     # --- OCR language handling (SPEC P2) ---
-    available_languages: tuple[str, ...] = ("eng", "jpn", "jpn_vert")
+    available_languages: tuple[str, ...] = (
+        "eng", "jpn", "jpn_vert", "fra", "deu", "spa", "ita",
+    )
     language_detect_pages: int = 3
 
     def to_canonical_json(self) -> str:

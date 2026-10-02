@@ -113,25 +113,56 @@ def resolve_language(
 
     probe = indices[: s.language_detect_pages]
     text_parts: list[str] = []
-    image_page: int | None = None
+    image_pages: list[int] = []
     for idx in probe:
         pd = pdf.load_page(idx)
         if pd.words:
             text_parts.append(pd.text)
-        elif pd.images and image_page is None:
-            image_page = idx
-    detected = ocr.detect_language_from_text(" ".join(text_parts)) if text_parts else None
-    if detected is None and image_page is not None and ocr.tesseract_available():
-        gray, _dpi, err = pdf.render_gray(image_page, 200.0, s.render_mp_cap)
-        if gray is not None and err is None:
-            detected = ocr.detect_script(gray)
+        elif pd.images:
+            image_pages.append(idx)
+
+    detected: str | None = None
+    origin = "detected on first pages"
+    if text_parts:
+        joined = " ".join(text_parts)
+        detected = ocr.detect_language_from_text(joined)
+        if detected == "eng" and not ocr.detect_latin_language(joined)[1]:
+            origin = "Latin script, ambiguous wordlist vote: eng fallback"
+    if detected is None and image_pages and ocr.tesseract_available():
+        renders = []
+        for idx in image_pages:
+            gray, _dpi, err = pdf.render_gray(idx, 200.0, s.render_mp_cap)
+            if gray is not None and err is None:
+                renders.append(gray)
+        script = ocr.detect_script(renders[0]) if renders else None
+        if script == "Latin":
+            # Latin script alone doesn't name a language: OCR probe pages
+            # under eng and vote on the words (disposition 3). Near-textless
+            # pages (covers) vote ambiguous, so keep probing.
+            detected, origin = "eng", "Latin script, ambiguous wordlist vote: eng fallback"
+            if "eng" in ocr.installed_languages():
+                for gray in renders:
+                    try:
+                        words = ocr.ocr_tsv(gray, "eng")
+                    except (RuntimeError, OSError):
+                        continue
+                    lang, confident = ocr.detect_latin_language(
+                        " ".join(w.text for w in words)
+                    )
+                    if confident:
+                        detected = lang
+                        origin = "Latin script, wordlist vote on OCR probe"
+                        break
+        elif script:
+            detected = ocr.script_to_language(script)
+            origin = f"OSD script '{script}' on first image page"
     if detected is None:
         return LanguageInfo(
             None, None, False,
             "document language could not be determined from first pages: "
             "TQ is null (unknown), never penalized",
         )
-    return support(detected, "detected on first pages")
+    return support(detected, origin)
 
 
 def _embedded_source(pd) -> str:
@@ -147,6 +178,7 @@ def analyze_page(
     lang: LanguageInfo,
     s: AnalyzerSettings,
     measure_achievable: bool,
+    force_schematic_target: bool = False,
 ) -> PageResult:
     res = PageResult(index=index, assessed=True)
     pd = pdf.load_page(index)
@@ -178,7 +210,7 @@ def analyze_page(
     res.if_metrics = image_fidelity.measure(gray, native_dpi, bpc, actual_dpi)
     if res.content_class != "blank":
         res.if_score, res.if_deductions = scoring.score_image_fidelity(
-            res.if_metrics, res.content_class, s
+            res.if_metrics, res.content_class, s, force_schematic_target
         )
 
     # --- text quality ---
@@ -244,7 +276,10 @@ def analyze_pdf(
         else:
             indices = list(range(n))
         lang = resolve_language(pdf, indices, lang_override, s)
-        pages = [analyze_page(pdf, i, lang, s, measure_achievable) for i in indices]
+        pages = [
+            analyze_page(pdf, i, lang, s, measure_achievable, schematic_implied_flag)
+            for i in indices
+        ]
 
     schematic_implied = schematic_implied_flag or any(
         p.content_class == "schematic" for p in pages

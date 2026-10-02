@@ -161,6 +161,19 @@ class TestPageGate:
         assert any(h.page_index == 19 and 50 <= h.score < 75 for h in degraded)
 
 
+class TestSchematicImpliedFlag:
+    """Disposition 4: --schematic-implied raises the DPI target document-wide,
+    not only the critical-content check."""
+
+    def test_flag_raises_dpi_target_on_text_pages(self, fixtures):
+        path = fixtures.get("ocr_layer_no_floor")  # 100 DPI text-class pages
+        plain = analyze_pdf(path, lang_override="eng")
+        forced = analyze_pdf(path, lang_override="eng", schematic_implied_flag=True)
+        for p_plain, p_forced in zip(plain.pages, forced.pages):
+            assert p_forced.if_score < p_plain.if_score
+        assert forced.schematic_implied is True
+
+
 class TestWrongLanguage:
     """Japanese pages under an eng-only configuration: TQ null (unknown),
     never a penalty, never REPROCESS (SPEC P2)."""

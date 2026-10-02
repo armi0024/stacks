@@ -25,19 +25,33 @@ TEXT_CLASSES = ("text", "mixed")
 
 
 def score_image_fidelity(
-    m: IFMetrics, content_class: str, s: AnalyzerSettings
+    m: IFMetrics,
+    content_class: str,
+    s: AnalyzerSettings,
+    force_schematic_target: bool = False,
 ) -> tuple[float, list[Deduction]]:
+    """force_schematic_target: operator asserted the document is
+    schematic-implied (--schematic-implied / identity doc type), so every page
+    is held to the schematic DPI target even when the content classifier
+    calls it text-class (wiring diagrams under-classify; disposition 4)."""
     deds: list[Deduction] = []
     schematic_class = content_class in SCHEMATIC_CLASSES
-    target = s.dpi_target_schematic if schematic_class else s.dpi_target_text
+    use_schematic_target = schematic_class or force_schematic_target
+    target = s.dpi_target_schematic if use_schematic_target else s.dpi_target_text
     if m.effective_dpi is not None and m.effective_dpi < target:
         pts = s.dpi_deduction_max * (target - m.effective_dpi) / target
+        if schematic_class:
+            target_why = "schematic-class pages"
+        elif force_schematic_target:
+            target_why = "all pages of an operator-asserted schematic-implied document"
+        else:
+            target_why = "text-class pages"
         deds.append(
             Deduction(
                 "dpi_below_target",
                 pts,
                 f"effective DPI {m.effective_dpi:.0f} (from rendered placement) is below the "
-                f"{target:.0f} DPI target for {'schematic' if schematic_class else 'text'}-class pages",
+                f"{target:.0f} DPI target for {target_why}",
             )
         )
         if m.effective_dpi < s.dpi_low_threshold:

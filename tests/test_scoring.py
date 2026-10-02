@@ -69,6 +69,16 @@ class TestImageFidelityFormula:
         assert score == pytest.approx(expected)
         assert len(deds) == 6
 
+    def test_force_schematic_target_on_text_class(self):
+        # disposition 4: asserted schematic-implied docs hold every page to 300
+        plain, _ = score_image_fidelity(ifm(effective_dpi=250), "text", S)
+        forced, deds = score_image_fidelity(
+            ifm(effective_dpi=250), "text", S, force_schematic_target=True
+        )
+        assert plain == 100
+        assert forced == pytest.approx(100 - 40 * (300 - 250) / 300)
+        assert "schematic-implied" in deds[0].reason
+
     def test_missing_dpi_never_penalized(self):
         score, deds = score_image_fidelity(ifm(effective_dpi=None), "text", S)
         assert score == 100 and not deds

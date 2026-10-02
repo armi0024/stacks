@@ -4,6 +4,14 @@ Heuristics on the grayscale render: ink fraction for blank, long straight-line
 density for schematic structure, word-box coverage for text density. Table
 regions (ruled grids) are recorded as bboxes in render pixels (best-effort;
 clues for the chunker, not proof).
+
+KNOWN LIMITATION (smoke run 2026-10-01, disposition 4): wiring diagrams with
+mostly short/curved runs under-classify as text-class (the long-straight-line
+score misses them), and diagonal-only drawings are under-detected by the
+morphological H/V kernels. Threshold calibration belongs to the pilot
+ground-truth set (SPEC 6.1). Operator mitigations exist today:
+--schematic-implied holds every page to the schematic DPI target, and
+--critical-pages applies the page gates to designated pages.
 """
 
 from __future__ import annotations

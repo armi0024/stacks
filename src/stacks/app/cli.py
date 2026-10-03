@@ -144,6 +144,51 @@ def cmd_capacity(args) -> int:
     return 0
 
 
+def cmd_outbox(args) -> int:
+    cfg = load_config(args.config_root)
+    conn = _conn(cfg)
+    from stacks.core import outbox
+    from stacks.core.runtime import reconcile
+
+    if args.action == "dispatch":
+        report = reconcile(conn, cfg)
+        print(f"applied={report.applied} failed={report.failed} unknown={report.skipped_unknown}")
+    print(json.dumps(outbox.status(conn)))
+    conn.close()
+    return 0
+
+
+def cmd_audit_verify(args) -> int:
+    cfg = load_config(args.config_root)
+    from stacks.core.audit import audit_path, verify_chain
+
+    report = verify_chain(args.file or audit_path(cfg.config_root))
+    if report.ok:
+        print(f"chain ok: {report.lines} lines")
+        return 0
+    # a chain break is itself an alarmed event (P11)
+    print(f"CHAIN BROKEN at line {report.break_line}: {report.reason}", file=sys.stderr)
+    return 2
+
+
+def cmd_reindex(args) -> int:
+    cfg = load_config(args.config_root)
+    conn = _conn(cfg)
+    from stacks.core.runtime import reconcile
+    from stacks.index import generations
+
+    if args.document_id:
+        doc_ids = [args.document_id]
+    else:
+        doc_ids = [r["id"] for r in conn.execute("SELECT id FROM documents ORDER BY created_at")]
+    for doc_id in doc_ids:
+        out = generations.reindex_document(conn, doc_id, actor=f"cli:{args.as_principal}")
+        print(f"{doc_id}: generation {out['generation']}, {out['chunks']} chunks")
+    reconcile(conn, cfg)
+    conn.close()
+    return 0
+
+
 def cmd_serve(args) -> int:
     import uvicorn
 
@@ -219,6 +264,19 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--host", default="127.0.0.1")
     s.add_argument("--port", type=int, default=8780)
     s.set_defaults(fn=cmd_serve)
+
+    s = sub.add_parser("outbox", help="outbox status / dispatch pending rows")
+    s.add_argument("action", choices=["status", "dispatch"])
+    s.set_defaults(fn=cmd_outbox)
+
+    s = sub.add_parser("audit-verify", help="verify audit chain continuity")
+    s.add_argument("--file", default=None, help="audit file (default: config root's)")
+    s.set_defaults(fn=cmd_audit_verify)
+
+    s = sub.add_parser("reindex", help="rebuild chunks via generation activation")
+    s.add_argument("document_id", nargs="?", default=None, help="omit to reindex all")
+    s.add_argument("--as", dest="as_principal", default="owner")
+    s.set_defaults(fn=cmd_reindex)
     return p
 
 

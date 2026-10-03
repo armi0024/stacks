@@ -1,4 +1,4 @@
-# Stacks operations runbook (phase 1a)
+# Stacks operations runbook (phase 1)
 
 Maintained with the spec (SPEC 3.6). The restore procedure below is the
 whole migration story: stop, restore snapshots, remount NAS, repoint
@@ -83,6 +83,24 @@ DNS/mDNS, start. **Any additional required step is an architecture defect.**
 Drill cadence: pilot, then yearly (SPEC 6.7). The automated restore test in
 `tests/test_ops_api.py` exercises snapshot -> mutate -> restore -> verify on
 every run.
+
+## Outbox and audit stream (1b)
+
+- Side effects (audit appends, chunk GC) ride the transactional outbox.
+  The API reconciles pending rows at startup and after every write;
+  `stacks-admin outbox status|dispatch` covers headless operation. A
+  growing `pending` count with `failing > 0` means a handler is erroring —
+  read `last_error` in the outbox table.
+- Audit stream: `<config root>/audit/audit.jsonl`, hash-chained per line
+  (P11). Verify with `stacks-admin audit-verify` (exit 2 + CHAIN BROKEN on
+  a break — treat as an alarm, not a log line). Rotation preserves the
+  chain across `audit.jsonl.N` segments.
+- The audit file lives on local SSD and is NOT in the DB backups; until
+  the estate's audit collector exists, include `<config root>/audit/` in
+  any manual host backup. Keys remain excluded (P12).
+- `stacks-admin reindex [document_id]` rebuilds chunk generations through
+  the activation protocol (build -> verify -> activate -> GC); safe while
+  serving — search only ever sees the active generation.
 
 ## Schema migrations (P10)
 

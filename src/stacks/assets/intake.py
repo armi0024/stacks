@@ -83,12 +83,19 @@ def enforce_phi_refusal(conn: sqlite3.Connection, path: str, text_sample: str) -
     """Refuse at every domain/sensitivity; log path + reason, never content."""
     refused, reason = phi_screen(text_sample)
     if refused:
+        from stacks.core import audit
+
         with conn:
             conn.execute(
                 "INSERT INTO phi_refusals(id, path, reason_code, at)"
                 " VALUES (?, ?, ?, datetime('now'))",
                 (new_id("phi"), path, reason),
             )
+            audit.emit(conn, {
+                "event": "phi-refusal", "actor": "system:phi-screen",
+                "object": {"kind": "path", "id": path},
+                "detail": {"reason_code": reason},
+            })
         raise PhiRefused(reason)
 
 

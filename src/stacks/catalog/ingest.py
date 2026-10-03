@@ -31,8 +31,10 @@ from stacks.assets.intake import enforce_phi_refusal, record_projection
 from stacks.assets.store import AssetStore
 from stacks.auth.filter import require_verb
 from stacks.auth.model import SENSITIVITY_RANK, AuthError, Principal
+from stacks.core import audit
 from stacks.core.config import StacksConfig
 from stacks.core.ids import new_id, sha256_file
+from stacks.index import generations
 
 
 class IngestError(Exception):
@@ -148,10 +150,20 @@ def ingest_pdf(
             "INSERT INTO copy_assets(copy_id, asset_id, relation) VALUES (?, ?, 'primary')",
             (copy_id, asset.id),
         )
+        audit.emit(conn, {
+            "event": "ingest-commit", "actor": principal.name,
+            "object": {"kind": "document", "id": doc_id},
+            "detail": {"copy_id": copy_id, "asset_id": asset.id, "sha256": sha,
+                       "source_class": source_class, "domain": primary_domain,
+                       "sensitivity": sensitivity},
+        })
 
     _analyze_and_record(conn, cfg, copy_id, store.abs_path(asset), mode, language, analyzer_settings)
     _assign_provisional_default(conn, doc_id, copy_id)
     record_projection(conn, session or f"ingest:{copy_id}", {"master": asset.size_bytes})
+    # index through the activation protocol: generation 1 built inactive,
+    # verified, then activated — search never sees a partial index (3.5)
+    generations.reindex_document(conn, doc_id, actor=principal.name)
 
     action = conn.execute(
         "SELECT recommended_action FROM copies WHERE id = ?", (copy_id,)
@@ -234,3 +246,8 @@ def _assign_provisional_default(conn: sqlite3.Connection, doc_id: str, copy_id: 
             " WHERE id=?",
             (copy_id,),
         )
+        audit.emit(conn, {
+            "event": "canonical-assignment", "actor": "system:first-copy-rule",
+            "object": {"kind": "copy", "id": copy_id},
+            "detail": {"document_id": doc_id, "state": "provisional"},
+        })

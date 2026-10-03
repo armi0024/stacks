@@ -32,6 +32,26 @@ DNS/mDNS, start. **Any additional required step is an architecture defect.**
    `:ro` bind mount for the serving container; the ingest worker gets the rw
    bind. Serving code references the ro mount exclusively.
 
+## This host (Mac mini, provisioned 2026-10-02)
+
+- Config root `/var/stacks/stacks-config`; DB `/var/stacks/stacks-data/stacks.sqlite`;
+  files root `/Users/Shared/stacks-rw`; mount-id `5C828F86-9003-443D-8B24-47AB8F10CB38`.
+- `_stacks` is a role account, UID 450, home `/var/stacks`, no login shell.
+- **NAS mount is a LaunchDaemon, not autofs/Finder:** macOS smbfs sessions are
+  per-user (only the mounting user can access them; mode bits don't help), so
+  `com.stacks.mount` runs `/usr/local/libexec/stacks-mount.sh` AS `_stacks`
+  (`UserName` key) at boot and every 60 s (remount-if-dropped). The script holds
+  the SMB URL with the percent-encoded password; owner `_stacks`, mode 500.
+  Humans browse the share via their own Finder session (`/Volumes/...`), never
+  through the service mount.
+- **TCC:** launchd daemons get EPERM on network volumes without consent. The
+  venv's real Python binary (under `~susanarmitage/.local/share/uv/python/...`)
+  is granted Full Disk Access in System Settings. A uv Python upgrade changes
+  that path and silently breaks backups with EPERM until the new binary is
+  re-granted — check this first when backups start failing after an update.
+- launchd jobs: `com.stacks.mount`, `com.stacks.backup.hourly` (:05 hourly),
+  `com.stacks.backup.nightly` (03:30, retain 14). Logs in `/var/stacks/logs/`.
+
 ## Backups (schedule under the service account)
 
 - Hourly: `stacks-admin backup incremental --dest <nas>/backups`
@@ -41,6 +61,10 @@ DNS/mDNS, start. **Any additional required step is an architecture defect.**
   protection is Hyper Backup's schedule (daily), covering uploads/,
   intake-*/, backups/. Keys are excluded; escrow is manual (above).
 - Qdrant (phase 6+): nightly snapshot; always rebuildable from SQLite+assets.
+- Backup/restore code never lets SQLite open a file on the NAS (smbfs locking
+  is unreliable; macOS `fcopyfile` also EPERMs there): all database work
+  happens beside the live DB on local SSD, then bytes are chunk-copied to the
+  NAS with a SHA-256 transit check and atomic rename.
 
 ## Restore / host migration (RTO <= 4 h)
 
